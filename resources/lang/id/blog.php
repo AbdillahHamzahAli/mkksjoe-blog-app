@@ -27,6 +27,7 @@ return [
         'dashboard' => 'Dasbor',
         'login' => "Login",
         'logout' => "Logout",
+        'profile' => 'PROFIL'
     ],
     'button' => [
         'read_more' => [

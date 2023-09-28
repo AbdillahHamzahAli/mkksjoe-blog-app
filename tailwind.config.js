@@ -3,6 +3,8 @@ module.exports = {
     content: [
         "./resources/views/newblog/*.blade.php",
         "./resources/views/layouts/_newblog/*.blade.php",
+        "./resources/views/layouts/_blog/*.blade.php",
+        "./resources/views/layouts/auth.blade.php",
         "./resources/views/layouts/newblog.blade.php",
     ],
     theme: {
