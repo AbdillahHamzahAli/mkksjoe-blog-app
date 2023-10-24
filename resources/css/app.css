@@ -1,3 +1,39 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+    font-family: "Roboto", sans-serif;
+}
+nav[aria-label="breadcrumb"] {
+    @apply bg-slate-100  py-4;
+}
+nav .breadcrumb {
+    @apply flex flex-row bg-white p-4 shadow-md;
+}
+nav .breadcrumb li {
+    @apply pl-2 text-sm whitespace-nowrap overflow-hidden;
+}
+nav .breadcrumb > li:not(:last-child) {
+    @apply font-medium;
+}
+nav .breadcrumb > li:not(:last-child)::after {
+    @apply pl-2;
+    content: " >> ";
+}
+.news-ticker {
+    animation: ticker 30s infinite linear;
+}
+@keyframes ticker {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+/* POST DETAIL */
+
+.articlebody ul {
+    @apply px-4;
+}

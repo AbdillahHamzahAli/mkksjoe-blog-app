@@ -4,8 +4,12 @@
     {{ trans('blog.title.home') }}
 @endsection
 
+@section('breadcrumbs')
+    {{ Breadcrumbs::render('blog_home') }}
+@endsection
+
 @section('content')
-    <section class="pb-10 lg:min-h-screen bg-slate-100">
+    <section class="pb-10 pt-6 lg:min-h-screen bg-slate-100">
         <div class="container">
             <div class="w-full px-4">
                 <div class="mx-auto mb-16 max-w-xl text-center">

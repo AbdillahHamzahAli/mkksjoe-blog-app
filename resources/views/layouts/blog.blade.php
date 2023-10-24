@@ -25,9 +25,15 @@
             @yield('breadcrumbs')
         </div>
     </div>
+    <div class="bg-slate-100">
+        <div class="container">
+            <x-newsmatic />
+        </div>
+    </div>
+
     <section class="w-full bg-slate-100 pb-4">
         <div class="container">
-            <div class="flex flex-col md:flex-row px-4 md:px-0 w-full">
+            <div class="flex flex-col md:flex-row px-0 w-full">
                 <div
                     class="grow-0 mb-4 shrink basis-full md:basis-2/3 flex bg-white min-h-screen border-t-2 border-primary shadow-md">
                     @yield('content')

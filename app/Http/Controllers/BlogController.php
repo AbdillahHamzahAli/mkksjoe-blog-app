@@ -9,10 +9,10 @@ use App\Models\Tag;
 
 class BlogController extends Controller
 {
-    private $perPages = 12;
+    private $perPages = 5;
     public function home()
     {
-        return view('newblog.home', [
+        return view('blog.home', [
             'posts' => Post::publish()->latest()->paginate($this->perPages)
         ]);
     }
@@ -34,7 +34,7 @@ class BlogController extends Controller
             return redirect()->route('blog.home');
         }
 
-        return view('newblog.search_posts', [
+        return view('blog.search_posts', [
             'posts' => Post::publish()->search($request->keyword)->latest()
                 ->paginate($this->perPages)
                 ->appends(['keyword' => $request->keyword])
@@ -79,7 +79,7 @@ class BlogController extends Controller
         $postsByCategories = Post::publish()->whereHas('categories', function ($query) use ($post, $slug) {
             return $query->where('slug', $post->categories->first()->slug);
         })->where('slug', 'NOT LIKE', $slug)->latest()->limit(4)->get();
-        return view('newblog.post-detail', [
+        return view('blog.post-detail', [
             'posts' => $postsByCategories,
             'post' => $post,
         ]);

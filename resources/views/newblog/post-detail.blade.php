@@ -4,6 +4,10 @@
     {{ $post->title }}
 @endsection
 
+@section('breadcrumbs')
+    {{ Breadcrumbs::render('blog_detail', $post->title) }}
+@endsection
+
 @section('content')
     <div class="pb-10 container lg:min-h-screen">
         <div class="w-full px-4">
