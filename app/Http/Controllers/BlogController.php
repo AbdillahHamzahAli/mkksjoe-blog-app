@@ -49,7 +49,7 @@ class BlogController extends Controller
         $category = Category::where('slug', $slug)->first();
         $categoryRoot = $category->root();
 
-        return view('newblog.posts-category', [
+        return view('blog.posts-category', [
             'posts' => $posts,
             'category' => $category,
             'categoryRoot' => $categoryRoot
