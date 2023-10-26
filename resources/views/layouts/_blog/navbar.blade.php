@@ -39,7 +39,7 @@
             </div>
         </div>
     </header>
-    <nav id="navbar-container" class="z-10 w-full bg-white py-2">
+    <nav id="navbar-container" class="z-10 w-full bg-white py-2 md:py-0">
         <div class="w-full container flex flex-col">
             <div class="flex px-4 items-center">
                 <div class="grow-0 shrink basis-1/4 cursor-pointer" onclick="navbarToogle()">

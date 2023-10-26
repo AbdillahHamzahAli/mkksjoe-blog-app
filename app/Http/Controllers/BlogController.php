@@ -9,7 +9,7 @@ use App\Models\Tag;
 
 class BlogController extends Controller
 {
-    private $perPages = 5;
+    private $perPages = 4;
     public function home()
     {
         return view('blog.home', [
@@ -18,7 +18,7 @@ class BlogController extends Controller
     }
     public function showCategories()
     {
-        return view('newblog.categories', [
+        return view('blog.categories', [
             'categories' => Category::onlyParent()->paginate($this->perPages)
         ]);
     }

@@ -1,28 +1,24 @@
 @extends('layouts.blog')
 
 @section('title')
-    {{ trans('blog.title.home') }}
+    {{ trans('blog.title.categories') }}
 @endsection
 
 @section('breadcrumbs')
-    {{ Breadcrumbs::render('blog_home') }}
-@endsection
-
-@section('newsmatic')
-    <x-newsmatic />
+    {{ Breadcrumbs::render('blog_categories') }}
 @endsection
 
 @section('content')
     <div class="p-4">
-        @foreach ($posts as $post)
+        @foreach ($categories as $category)
             <article class="w-full flex flex-col md:flex-row justify-around mb-4">
                 <div class=" grow-0 shrink basis-full md:basis-1/4 relative flex justify-center">
                     <!-- thumbnail:start -->
-                    @if (file_exists(public_path($post->thumbnail)))
-                        <img src="{{ asset($post->thumbnail) }}" alt="{{ $post->title }}"
+                    @if (file_exists(public_path($category->thumbnail)))
+                        <img src="{{ asset($category->thumbnail) }}" alt="{{ $category->title }}"
                             class="object-cover w-[278px] md:w-52 h-28 md:h-40">
                     @else
-                        <img src="http://placehold.it/700x400" alt="{{ $post->title }}"
+                        <img src="http://placehold.it/700x400" alt="{{ $category->title }}"
                             class="object-cover w-[278px] md:w-52 md:h-40 h-28">
                     @endif
                     <!-- thumbnail:end -->
@@ -30,25 +26,27 @@
                 </div>
                 <div class="grow-0 shrink basis-full md:basis-3/4 md:pl-4 pt-4 grid content-between">
                     <div class="mb-4">
-                        <h1 class="font-bold text-xl">{{ $post->title }}</h1>
+                        <h1 class="font-bold text-xl">{{ $category->title }}</h1>
                         <p>
-                            {{ Str::limit($post->description, 180, '...') }}
+                            {{ Str::limit($category->description, 180, '...') }}
                         </p>
                     </div>
 
                     <a class="text-xs font-bold hover:text-primary group"
-                        href="{{ route('blog.post.detail', ['slug' => $post->slug]) }} ">Read More <i
+                        href="{{ route('blog.posts.category', ['slug' => $category->slug]) }}">Read More <i
                             class="fa-solid fa-arrow-right group-hover:translate-x-2 duration-300"></i> </a>
                 </div>
             </article>
         @endforeach
-        @if ($posts->hasPages())
-            <div class="container pb-10">
-                <div class="w-full flex justify-end px-4">
-                    {{ $posts->links('vendor.pagination.simple-tailwind') }}
+        <div>
+            @if ($categories->hasPages())
+                <div class="container pb-10">
+                    <div class="w-full flex justify-end px-4">
+                        {{ $categories->links('vendor.pagination.simple-tailwind') }}
+                    </div>
                 </div>
-            </div>
-        @endif
+            @endif
+        </div>
 
     </div>
 @endsection
