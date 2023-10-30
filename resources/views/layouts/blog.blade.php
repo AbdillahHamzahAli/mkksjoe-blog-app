@@ -37,7 +37,7 @@
                 </div>
                 <div class="grow-0 shrink basis-full md:basis-1/3 md:ml-4">
                     <ul class="flex flex-col w-full">
-                        <x-side-categories />
+                        @yield('right-side')
                         <x-side-categories />
                     </ul>
                 </div>
