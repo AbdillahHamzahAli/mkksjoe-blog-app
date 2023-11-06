@@ -25,8 +25,33 @@
                 </a>
             </li><!-- End Search Icon-->
 
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle py-3 " id="language" role="button" data-bs-toggle="dropdown">
+                    @switch(app()->getLocale())
+                        @case('id')
+                            <i class="flag-icon flag-icon-id shadow-sm"></i>
+                        @break
 
-            <li class="nav-item dropdown pe-3">
+                        @case('en')
+                            <i class="flag-icon flag-icon-gb"></i>
+                        @break
+
+                        @default
+                    @endswitch
+                    {{ strtoupper(app()->getLocale()) }}
+                </a>
+                <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow " aria-labelledby="language">
+                    <a class="dropdown-item" href="{{ route('localization.switch', ['language' => 'id']) }}">
+                        {{ __('localization.id') }}
+                    </a>
+                    <a class="dropdown-item" href="{{ route('localization.switch', ['language' => 'en']) }}">
+                        {{ __('localization.en') }}
+                    </a>
+                </div>
+            </li>
+            <!-- End Lang Dropdown -->
+
+            <li class="nav-item dropdown px-3 ">
 
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                     <img src="{{ asset('assets/img/profile-img.jpg') }}" alt="Profile" class="rounded-circle">
