@@ -71,7 +71,7 @@
                     <li>
                         <a class="dropdown-item d-flex align-items-center" href="{{ route('profile.edit') }}">
                             <i class="bi bi-person"></i>
-                            <span>My Profile</span>
+                            <span>{{ __('dashboard.link.profile') }}</span>
                         </a>
                     </li>
                     <li>
@@ -83,7 +83,7 @@
                             <a class="pointer dropdown-item d-flex align-items-center" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();this.closest('form').submit();">
                                 <i class="bi bi-box-arrow-right"></i>
-                                <span>Sign Out</span>
+                                <span>{{ __('dashboard.link.logout') }}</span>
                             </a>
                         </form>
                     </li>
