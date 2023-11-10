@@ -2,18 +2,19 @@
 <aside id="sidebar" class="sidebar">
 
     <ul class="sidebar-nav" id="sidebar-nav">
-
         <li class="nav-item">
-            <a class="nav-link " href="index.html">
+            <a class="nav-link {{ set_active(['dashboard.index']) }} collapsed" href="{{ route('dashboard.index') }}">
                 <i class="bi bi-grid"></i>
                 <span>{{ __('dashboard.link.dashboard') }}</span>
             </a>
-        </li><!-- End Dashboard Nav -->
+        </li>
+        <!-- End Dashboard Nav -->
 
         <li class="nav-heading">{{ __('dashboard.menu.master') }}</li>
 
         <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+            <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse"
+                aria-expanded="false" href="#">
                 <i class="bi bi-newspaper""></i><span>{{ __('dashboard.link.news.news') }}</span><i
                     class="bi bi-chevron-down ms-auto"></i>
             </a>
@@ -24,12 +25,14 @@
                     </a>
                 </li>
                 <li>
-                    <a href="components-alerts.html">
+                    <a href="{{ route('categories.index') }}"
+                        class="{{ set_active(['categories.index', 'categories.create']) }}">
                         <i class="bi bi-circle"></i><span>{{ __('dashboard.link.news.category') }}</span>
                     </a>
                 </li>
             </ul>
-        </li><!-- End Components Nav -->
+        </li>
+        <!-- End Components Nav -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="pages-faq.html">
                 <i class="bi bi-bell"></i>

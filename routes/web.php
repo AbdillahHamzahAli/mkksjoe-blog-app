@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LocalizationController;
 use Illuminate\Support\Facades\Route;
@@ -22,8 +23,11 @@ Route::get('/', function () {
 
 Route::get('/localization/{language}', LocalizationController::class)->name('localization.switch');
 
-Route::prefix('dashboard')->middleware(['auth', 'verified'])->group(function () {
-    Route::get('/', DashboardController::class)->name('dashboard');
+Route::prefix('dashboard')->middleware(['web', 'auth', 'verified'])->group(function () {
+    //dashboard
+    Route::get('/', DashboardController::class)->name('dashboard.index');
+    // category
+    Route::resource('/categories', CategoryController::class);
 });
 
 // Route::get('/dashboard', )->middleware(['auth', 'verified'])->name('dashboard');

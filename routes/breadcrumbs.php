@@ -22,7 +22,11 @@ Breadcrumbs::for('categories', function (BreadcrumbTrail $trail) {
     $trail->parent('dashboard');
     $trail->push('Categories', route('categories.index'));
 });
-
+// Dashboard > Categories > add
+Breadcrumbs::for('add_categories', function (BreadcrumbTrail $trail) {
+    $trail->parent('categories');
+    $trail->push('Add', route('categories.create'));
+});
 // // Home > Blog > [Category]
 // Breadcrumbs::for('category', function (BreadcrumbTrail $trail, $category) {
 //     $trail->parent('blog');
