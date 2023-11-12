@@ -18,6 +18,18 @@ class CategoryController extends Controller
         ]);
     }
 
+    public function select(Request $request)
+    {
+        $categories = [];
+        if ($request->has('q')) {
+            $search = $request->q;
+            $categories = Category::select('id', 'title')->where('TITLE', 'LIKE', "%$search%")->limit(6)->get();
+        } else {
+            $categories = Category::select('id', 'title')->onlyParent()->limit(6)->get();
+        }
+
+        return response()->json($categories);
+    }
     /**
      * Show the form for creating a new resource.
      */

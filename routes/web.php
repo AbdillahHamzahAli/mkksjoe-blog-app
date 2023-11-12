@@ -27,6 +27,7 @@ Route::prefix('dashboard')->middleware(['web', 'auth', 'verified'])->group(funct
     //dashboard
     Route::get('/', DashboardController::class)->name('dashboard.index');
     // category
+    Route::get('/categories/select', [CategoryController::class, 'select'])->name('categories.select');
     Route::resource('/categories', CategoryController::class);
 });
 
