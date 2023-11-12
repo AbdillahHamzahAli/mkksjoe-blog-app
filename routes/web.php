@@ -31,7 +31,9 @@ Route::prefix('dashboard')->middleware(['web', 'auth', 'verified'])->group(funct
     Route::resource('/categories', CategoryController::class);
 });
 
-// Route::get('/dashboard', )->middleware(['auth', 'verified'])->name('dashboard');
+Route::group(['prefix' => 'filemanager', 'middleware' => ['web', 'auth']], function () {
+    \UniSharp\LaravelFilemanager\Lfm::routes();
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
