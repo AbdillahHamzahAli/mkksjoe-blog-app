@@ -8,14 +8,22 @@
         <div class="card-body">
             <h5 class="card-title">{{ __('categories.form_control.title.add') }}</h5>
             <!-- General Form Elements -->
-            <form>
+            <form action="{{ route('categories.store') }}" method="POST">
+                @csrf
                 {{-- title --}}
                 <div class="row mb-3">
                     <label for="inputText"
                         class="col-sm-2 col-form-label">{{ __('categories.form_control.input.title.label') }}</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="title" id="input_category_title"
+                        <input type="text" value="{{ old('title') }}"
+                            class="form-control @error('title') is-invalid @enderror" name="title"
+                            id="input_category_title"
                             placeholder="{{ __('categories.form_control.input.title.placeholder') }}">
+                        @error('title')
+                            <span class="invalid-feedback" role="alert">
+                                {{ $message }}
+                            </span>
+                        @enderror
                     </div>
                 </div>
                 {{-- slug --}}
@@ -23,8 +31,15 @@
                     <label for="inputEmail"
                         class="col-sm-2 col-form-label">{{ __('categories.form_control.input.slug.label') }}</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="slug" id="input_category_slug"
-                            placeholder="{{ __('categories.form_control.input.slug.placeholder') }}" disabled>
+                        <input type="text" value="{{ old('slug') }}"
+                            class="form-control  @error('slug') is-invalid @enderror" name="slug"
+                            id="input_category_slug"
+                            placeholder="{{ __('categories.form_control.input.slug.placeholder') }}" readonly>
+                        @error('slug')
+                            <span class="invalid-feedback" role="alert">
+                                {{ $message }}
+                            </span>
+                        @enderror
                     </div>
                 </div>
                 {{-- thumbnail --}}
@@ -40,29 +55,46 @@
                                 </button>
                             </div>
                             <input id="input_category_thumbnail" name="thumbnail" value="{{ old('thumbnail') }}"
-                                type="text" class="form-control"
-                                placeholder="{{ __('categories.form_control.input.thumbnail.placeholder') }}" disabled />
-                            <div id="holder"></div>
+                                type="text" class="form-control @error('thumbnail') is-invalid @enderror"
+                                placeholder="{{ __('categories.form_control.input.thumbnail.placeholder') }}" readonly />
+                            @error('thumbnail')
+                                <span class="invalid-feedback" role="alert">
+                                    {{ $message }}
+                                </span>
+                            @enderror
                         </div>
                     </div>
+                    <div id="holder"></div>
                 </div>
+
                 {{-- parent category --}}
                 <div class="row mb-3">
                     <label for="select_category_parent"
                         class="col-sm-2 col-form-label">{{ __('categories.form_control.select.parent_category.label') }}</label>
                     <div class="col-sm-10">
-                        <select id="select_category_parent" name="parent_category" class="form-control"
+                        <select id="select_category_parent" name="parent_category" class="form-control  "
                             data-placeholder="{{ __('categories.form_control.select.parent_category.placeholder') }}">
+                            @if (old('parent_category'))
+                                <option value="{{ old('parent_category')->id }}" selected>
+                                    {{ old('parent_category')->title }}
+                                </option>
+                            @endif
                         </select>
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <label for="inputPassword" class="col-sm-2 col-form-label">
+                    <label for="description" class="col-sm-2 col-form-label">
                         {{ __('categories.form_control.textarea.description.label') }}
                     </label>
                     <div class="col-sm-10">
-                        <textarea id="input_category_description" name="description" class="form-control" style="height: 100px"
-                            placeholder="{{ __('categories.form_control.textarea.description.placeholder') }}"></textarea>
+                        <textarea id="input_category_description" name="description"
+                            class="form-control @error('description') is-invalid @enderror" style="height: 100px"
+                            placeholder="{{ __('categories.form_control.textarea.description.placeholder') }}">{{ old('description') }}</textarea>
+                        @error('description')
+                            <span class="invalid-feedback" role="alert">
+                                {{ $message }}
+                            </span>
+                        @enderror
                     </div>
                 </div>
                 <div class="row mb-3">
@@ -89,7 +121,7 @@
 @push('javascript-external')
     <script src="{{ asset('assets/vendor/select2/js/select2.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/select2/js/i18n/' . app()->getlocale() . '.js') }}"></script>
-    {{-- <script src="{{ asset('vendor/laravel-filemanager/js/stand-alone-button.js') }}"></script> --}}
+    <script src="{{ asset('vendor/laravel-filemanager/js/stand-alone-button.js') }}"></script>
 @endpush
 
 @push('javascript-internal')
@@ -135,6 +167,8 @@
                     }
                 }
             });
+            // event thumbnail
+            $('#button_category_thumbnail').filemanager('image')
         })
     </script>
 @endpush

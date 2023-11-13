@@ -9,9 +9,14 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Category extends Model
 {
     use HasFactory;
+    protected $fillable = ['title', 'slug', 'thumbnail', 'description', 'parent_id'];
     public function scopeOnlyParent($query)
     {
         return $query->whereNull('parent_id');
+    }
+    public function scopeSearch($query, $title)
+    {
+        return $query->where('title', 'LIKE', "%{$title}%");
     }
     public function children(): HasMany
     {
@@ -20,5 +25,9 @@ class Category extends Model
     public function descendants(): HasMany
     {
         return $this->children()->with('descendants');
+    }
+    public function root()
+    {
+        return $this->parent ? $this->parent->root() : $this;
     }
 }
