@@ -26,7 +26,7 @@
                 </li>
                 <li>
                     <a href="{{ route('categories.index') }}"
-                        class="{{ set_active(['categories.index', 'categories.create']) }}">
+                        class="{{ set_active(['categories.index', 'categories.create', 'category.edit']) }}">
                         <i class="bi bi-circle"></i><span>{{ __('dashboard.link.news.category') }}</span>
                     </a>
                 </li>

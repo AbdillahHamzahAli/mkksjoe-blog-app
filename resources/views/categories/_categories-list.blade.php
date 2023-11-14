@@ -9,7 +9,8 @@
                 <i class="bi bi-eye"></i>
             </a>
             <!-- edit -->
-            <a href="" class="btn btn-sm btn-info" role="button">
+            <a href="{{ route('categories.edit', ['category' => $category]) }}" class="btn btn-sm btn-info"
+                role="button">
                 <i class="bi bi-pencil-square"></i>
             </a>
             <!-- delete -->

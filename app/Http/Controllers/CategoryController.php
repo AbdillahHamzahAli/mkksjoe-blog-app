@@ -22,13 +22,30 @@ class CategoryController extends Controller
 
     public function select(Request $request)
     {
-        $categories = [];
-        if ($request->has('q')) {
-            $search = $request->q;
-            $categories = Category::select('id', 'title')->where('TITLE', 'LIKE', "%$search%")->limit(6)->get();
+        if ($request->has('category')) {
+            $category = $request->category;
+            $query = Category::select('id', 'title', 'parent_id')->where('id', '!=', $category);
+
+            if ($request->has('q')) {
+                $search = $request->q;
+                $query->where('title', 'LIKE', "%$search%");
+            }
+
+            $categories = $query->where(function ($query) use ($category) {
+                $query->orWhere('parent_id', '!=', $category)
+                    ->orWhereNull('parent_id');
+            })->limit(6)->get();
         } else {
-            $categories = Category::select('id', 'title')->onlyParent()->limit(6)->get();
+            $query = Category::select('id', 'title');
+
+            if ($request->has('q')) {
+                $search = $request->q;
+                $categories = $query->where('title', 'LIKE', "%$search%")->limit(6)->get();
+            } else {
+                $categories = $query->onlyParent()->limit(6)->get();
+            }
         }
+
 
         return response()->json($categories);
     }
@@ -102,9 +119,9 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Category $category)
     {
-        //
+        return view('categories.edit', ['category' => $category]);
     }
 
     /**
