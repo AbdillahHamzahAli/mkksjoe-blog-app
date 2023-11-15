@@ -92,8 +92,8 @@ class CategoryController extends Controller
                 'parent_id' => $request->parent_category,
             ]);
             Alert::success(
-                trans('categories.alert.create.title'),
-                trans('categories.alert.create.message.success')
+                __('categories.alert.create.title'),
+                __('categories.alert.create.message.success')
             );
             return redirect()->route('categories.index');
         } catch (\Throwable $th) {
@@ -101,8 +101,8 @@ class CategoryController extends Controller
                 $request['parent_category'] = Category::select('id', 'title')->find($request->parent_category);
             }
             Alert::error(
-                trans('categories.alert.create.title'),
-                trans('categories.alert.create.massage.error', ['error' => $th->getMessage()])
+                __('categories.alert.create.title'),
+                __('categories.alert.create.massage.error', ['error' => $th->getMessage()])
             );
             return redirect()->back()->withInput($request->all());
         }
@@ -127,9 +127,52 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Category $category)
     {
-        //
+        // proses validasi
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'title' => 'required|string|max:60',
+                'slug' => 'required|string|unique:categories,slug,' . $category->id,
+                'thumbnail' => 'required',
+                'description' => 'required|string|max:240',
+            ],
+            [],
+            $this->attributes()
+        );
+
+        if ($validator->fails()) {
+            if ($request->has('parent_category')) {
+                $request['parent_category'] = Category::select('id', 'title')->find($request->parent_category);
+            }
+            return redirect()->back()->withInput($request->all())->withErrors($validator);
+        }
+
+        // proses insert
+        try {
+            $category->update([
+                'title' => $request->title,
+                'slug' => $request->slug,
+                'thumbnail' => parse_url($request->thumbnail)['path'],
+                'description' => $request->description,
+                'parent_id' => $request->parent_category,
+            ]);
+            Alert::success(
+                __('categories.alert.update.title'),
+                __('categories.alert.update.message.success')
+            );
+            return redirect()->route('categories.index');
+        } catch (\Throwable $th) {
+            if ($request->has('parent_category')) {
+                $request['parent_category'] = Category::select('id', 'title')->find($request->parent_category);
+            }
+            Alert::error(
+                __('categories.alert.update.title'),
+                __('categories.alert.update.massage.error', ['error' => $th->getMessage()])
+            );
+            return redirect()->back()->withInput($request->all());
+        }
     }
 
     /**
