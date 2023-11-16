@@ -178,9 +178,21 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Category $category)
     {
-        //
+        try {
+            $category->delete();
+            Alert::success(
+                trans('categories.alert.delete.title'),
+                trans('categories.alert.delete.message.success')
+            );
+        } catch (\Throwable $th) {
+            Alert::error(
+                trans('categories.alert.delete.title'),
+                trans('categories.alert.delete.massage.error', ['error' => $th->getMessage()])
+            );
+        }
+        return redirect()->back();
     }
 
     private function attributes()

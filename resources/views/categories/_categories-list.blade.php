@@ -14,12 +14,14 @@
                 <i class="bi bi-pencil-square"></i>
             </a>
             <!-- delete -->
-            <form class="d-inline" action="" role="alert" method="POST" alert-title="Delete category"
-                alert-text="Are you sure you want to delete the HTML category?" alert-btn-cancel="Cancel"
-                alert-btn-yes="Delete">
-                <input type="hidden" name="_token" value="4emLkOztqHIjYR72hZFmYgqCuzdxiiL8TTxFqKIp">
-                <input type="hidden" name="_method" value="DELETE"> <button type="submit"
-                    class="btn btn-sm btn-danger">
+            <form class="d-inline" action="{{ route('categories.destroy', ['category' => $category]) }}" role="alert"
+                method="POST" alert-title="{{ __('categories.alert.delete.title') }}"
+                alert-text="{{ __('categories.alert.delete.message.confirm', ['title' => $category->title]) }}"
+                alert-btn-cancel="{{ __('categories.button.cancel.value') }}"
+                alert-btn-yes="{{ __('categories.button.delete.value') }}">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-sm btn-danger">
                     <i class="bi bi-trash"></i>
                 </button>
             </form>
