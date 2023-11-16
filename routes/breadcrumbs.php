@@ -22,6 +22,16 @@ Breadcrumbs::for('categories', function (BreadcrumbTrail $trail) {
     $trail->parent('dashboard');
     $trail->push('Categories', route('categories.index'));
 });
+// Dashboard > Categories
+Breadcrumbs::for('detail_categories', function (BreadcrumbTrail $trail, $category) {
+    $trail->parent('categories');
+    $trail->push('Detail', route('categories.show', ['category' => $category]));
+});
+// Dashboard > Categories > [Title]
+Breadcrumbs::for('detail_categories_title', function (BreadcrumbTrail $trail, $category) {
+    $trail->parent('detail_categories', $category);
+    $trail->push($category->title, route('categories.show', ['category' => $category]));
+});
 // Dashboard > Categories > add
 Breadcrumbs::for('add_categories', function (BreadcrumbTrail $trail) {
     $trail->parent('categories');
