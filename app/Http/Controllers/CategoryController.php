@@ -12,11 +12,16 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $categories = Category::onlyParent()->with('descendants')->get();
-        return view("categories.index", [
-            'categories' => $categories
+        $categories = Category::with('descendants');
+        if ($request->has('keyword') && trim($request->keyword)) {
+            $categories->search($request->keyword);
+        } else {
+            $categories->onlyParent();
+        }
+        return view('categories.index', [
+            'categories' => $categories->paginate(5)->appends('keyword', $request->get('keyword'))
         ]);
     }
 

@@ -27,7 +27,7 @@
             </form>
         </div>
     </li>
-    @if ($category->descendants)
+    @if ($category->descendants && !trim(request()->get('keyword')))
         @include('categories._categories-list', [
             'categories' => $category->descendants,
             'count' => $count + 2,

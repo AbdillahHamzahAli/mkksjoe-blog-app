@@ -10,11 +10,11 @@
                 <div class="card-header">
                     <div class="d-flex justify-content-between">
                         <div class="col-lg-6">
-                            <form action="" method="GET">
+                            <form action="{{ route('categories.index') }}" method="GET">
                                 <div class="input-group">
                                     <input name="keyword" type="search" class="form-control"
                                         placeholder="{{ __('categories.form_control.input.search.placeholder') }}"
-                                        value="">
+                                        value="{{ request()->get('keyword') }}">
                                     <div class="input-group-append">
                                         <button class="btn btn-primary" type="submit">
                                             <i class="bi bi-search"></i>
@@ -34,13 +34,27 @@
                 </div>
                 <div class="card-body px-0">
                     <ul class="list-group list-group-flush">
-                        @include('categories._categories-list', [
-                            'categories' => $categories,
-                            'count' => 0,
-                        ])
-
+                        @if (count($categories))
+                            @include('categories._categories-list', [
+                                'categories' => $categories,
+                                'count' => 0,
+                            ])
+                        @else
+                            <p class="p-4">
+                                @if (request()->get('keyword'))
+                                    {{ __('categories.label.no_data.search', ['keyword' => request()->get('keyword')]) }}
+                                @else
+                                    {{ __('categories.label.no_data.fetch') }}
+                                @endif
+                            </p>
+                        @endif
                     </ul>
                 </div>
+                @if ($categories->hasPages())
+                    <div class="card-footer">
+                        {{ $categories->links('vendor.pagination.bootstrap-5') }}
+                    </div>
+                @endif
             </div>
         </div>
     </div>
