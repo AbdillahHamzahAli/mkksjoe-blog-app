@@ -18,6 +18,11 @@ Breadcrumbs::for('dashboard_home', function (BreadcrumbTrail $trail) {
     $trail->push('Home', '#');
 });
 // Dashboard > Categories
+Breadcrumbs::for('news', function (BreadcrumbTrail $trail) {
+    $trail->parent('dashboard');
+    $trail->push('News', route('newspost.index'));
+});
+// Dashboard > Categories
 Breadcrumbs::for('categories', function (BreadcrumbTrail $trail) {
     $trail->parent('dashboard');
     $trail->push('Categories', route('categories.index'));

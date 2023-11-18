@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LocalizationController;
+use App\Http\Controllers\NewsPostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,6 +30,7 @@ Route::prefix('dashboard')->middleware(['web', 'auth', 'verified'])->group(funct
     // category
     Route::get('/categories/select', [CategoryController::class, 'select'])->name('categories.select');
     Route::resource('/categories', CategoryController::class);
+    Route::resource('/newspost', NewsPostController::class);
 });
 
 Route::group(['prefix' => 'filemanager', 'middleware' => ['web', 'auth']], function () {

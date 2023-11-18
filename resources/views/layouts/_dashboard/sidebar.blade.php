@@ -20,7 +20,8 @@
             </a>
             <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="components-alerts.html">
+                    <a href="{{ route('newspost.index') }}"
+                        class="{{ set_active(['newspost.index', 'newspost.create', 'newspost.edit', 'newspost.show']) }}">
                         <i class="bi bi-circle"></i><span>{{ __('dashboard.link.news.post') }}</span>
                     </a>
                 </li>
