@@ -53,63 +53,39 @@
                 </div>
                 <div class="card-body">
                     <ul class="list-group list-group-flush">
+                        @forelse($newsposts as $newspost)
+                            <div class="border-bottom my-2">
+                                <div class="pb-2">
+                                    <h5 class="card-title">{{ $newspost->title }}</h5>
+                                    <p>
+                                        {{ $newspost->description }}
+                                    </p>
+                                    <div class="d-flex justify-content-end">
+                                        <!-- detail -->
+                                        <a href="" class="btn btn-sm btn-primary" role="button">
+                                            <i class="bi bi-eye"></i>
+                                        </a>
+                                        <!-- edit -->
+                                        <a href="" class="btn btn-sm btn-info mx-1" role="button">
+                                            <i class="bi bi-pencil-square"></i>
+                                        </a>
+                                        <!-- delete -->
+                                        <form class="d-inline" role="alert"
+                                            alert-text="Are you sure you want to delete the LARAVEL 10 2023 post?"
+                                            action="" method="POST">
+                                            <button type="submit" class="btn btn-sm btn-danger">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        @empty
+                            <p class="my-2">
+                                {{ __('newspost.label.no_data.fetch') }}
+                            </p>
+                        @endforelse
                         <!-- list post -->
-                        <div class="border-bottom my-2">
-                            <div class="pb-2">
-                                <h5 class="card-title">LARAVEL 10 2023</h5>
-                                <p>
-                                    Laravel adalah salah satu framework pengembangan web berbasis PHP yang populer.
-                                </p>
-                                <div class="d-flex justify-content-end">
-                                    <!-- detail -->
-                                    <a href="https://tenkoarena.000webhostapp.com/dashboard/posts/1"
-                                        class="btn btn-sm btn-primary" role="button">
-                                        <i class="bi bi-eye"></i>
-                                    </a>
-                                    <!-- edit -->
-                                    <a href="https://tenkoarena.000webhostapp.com/dashboard/posts/1/edit"
-                                        class="btn btn-sm btn-info mx-1" role="button">
-                                        <i class="bi bi-pencil-square"></i>
-                                    </a>
-                                    <!-- delete -->
-                                    <form class="d-inline" role="alert"
-                                        alert-text="Are you sure you want to delete the LARAVEL 10 2023 post?"
-                                        action="https://tenkoarena.000webhostapp.com/dashboard/posts/1" method="POST">
-                                        <button type="submit" class="btn btn-sm btn-danger">
-                                            <i class="bi bi-trash"></i>
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="border-bottom my-2">
-                            <div class="pb-2">
-                                <h5 class="card-title">LARAVEL 10 2023</h5>
-                                <p>
-                                    Laravel adalah salah satu framework pengembangan web berbasis PHP yang populer.
-                                </p>
-                                <div class="d-flex justify-content-end">
-                                    <!-- detail -->
-                                    <a href="https://tenkoarena.000webhostapp.com/dashboard/posts/1"
-                                        class="btn btn-sm btn-primary" role="button">
-                                        <i class="bi bi-eye"></i>
-                                    </a>
-                                    <!-- edit -->
-                                    <a href="https://tenkoarena.000webhostapp.com/dashboard/posts/1/edit"
-                                        class="btn btn-sm btn-info mx-1" role="button">
-                                        <i class="bi bi-pencil-square"></i>
-                                    </a>
-                                    <!-- delete -->
-                                    <form class="d-inline" role="alert"
-                                        alert-text="Are you sure you want to delete the LARAVEL 10 2023 post?"
-                                        action="https://tenkoarena.000webhostapp.com/dashboard/posts/1" method="POST">
-                                        <button type="submit" class="btn btn-sm btn-danger">
-                                            <i class="bi bi-trash"></i>
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
                     </ul>
                 </div>
             </div>
