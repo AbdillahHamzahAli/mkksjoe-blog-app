@@ -14,7 +14,7 @@
                                 <div class="d-flex">
                                     <div class="input-group mx-1">
                                         <label class="mx-2 col-form-label">
-                                            Status
+                                            {{ __('newspost.form_control.select.status.label') }}
                                         </label>
                                         <div class="col-sm-5">
                                             <select name="status" class="form-select">
@@ -27,13 +27,13 @@
 
                                         <div class="input-group-append col-sm-3">
                                             <button class="btn btn-primary" type="submit">
-                                                Apply
+                                                {{ __('newspost.button.apply.value') }}
                                             </button>
                                         </div>
                                     </div>
                                     <div class="input-group mx-1">
                                         <input name="keyword" value="" type="search" class="form-control"
-                                            placeholder="Search for posts">
+                                            placeholder="{{ __('newspost.form_control.input.search.placeholder') }}">
                                         <div class="input-group-append">
                                             <button class="btn btn-primary" type="submit">
                                                 <i class="bi bi-search"></i>
@@ -44,9 +44,8 @@
                             </form>
                         </div>
                         <div>
-                            <a href="https://tenkoarena.000webhostapp.com/dashboard/posts/create"
-                                class="btn btn-primary float-right" role="button">
-                                Add
+                            <a href="" class="btn btn-primary float-right" role="button">
+                                {{ trans('newspost.button.create.value') }}
                                 <i class="bi bi-plus-square"></i>
                             </a>
                         </div>
