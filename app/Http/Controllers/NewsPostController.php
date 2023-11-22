@@ -22,7 +22,9 @@ class NewsPostController extends Controller
      */
     public function create()
     {
-        //
+        return view('news.create', [
+            'statuses' => $this->statuses()
+        ]);
     }
 
     /**
@@ -63,5 +65,12 @@ class NewsPostController extends Controller
     public function destroy(NewsPost $newsPost)
     {
         //
+    }
+    private function statuses()
+    {
+        return [
+            'draft' => __('newspost.form_control.select.status.option.draft'),
+            'publish' => __('newspost.form_control.select.status.option.publish')
+        ];
     }
 }

@@ -17,10 +17,15 @@ Breadcrumbs::for('dashboard_home', function (BreadcrumbTrail $trail) {
     $trail->parent('dashboard');
     $trail->push('Home', '#');
 });
-// Dashboard > Categories
+// Dashboard > News
 Breadcrumbs::for('news', function (BreadcrumbTrail $trail) {
     $trail->parent('dashboard');
     $trail->push('News', route('newspost.index'));
+});
+// Dashboard > News
+Breadcrumbs::for('add_news', function (BreadcrumbTrail $trail) {
+    $trail->parent('news');
+    $trail->push('Add', route('newspost.create'));
 });
 // Dashboard > Categories
 Breadcrumbs::for('categories', function (BreadcrumbTrail $trail) {

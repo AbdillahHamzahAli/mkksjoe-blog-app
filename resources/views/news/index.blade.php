@@ -44,7 +44,7 @@
                             </form>
                         </div>
                         <div>
-                            <a href="" class="btn btn-primary float-right" role="button">
+                            <a href="{{ route('newspost.create') }}" class="btn btn-primary float-right" role="button">
                                 {{ trans('newspost.button.create.value') }}
                                 <i class="bi bi-plus-square"></i>
                             </a>
