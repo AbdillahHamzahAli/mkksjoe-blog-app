@@ -92,3 +92,7 @@
         </div>
     </div>
 @endsection
+
+@push('javascript-internal')
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@endpush

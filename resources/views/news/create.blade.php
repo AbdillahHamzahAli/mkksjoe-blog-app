@@ -5,7 +5,8 @@
 
 @section('content')
 
-    <form action="" class="row">
+    <form action="{{ route('newspost.store') }}" method="POST" class="row">
+        @csrf
         <div class="card">
             <div class="card-body">
                 <div class="pt-4">
@@ -14,8 +15,14 @@
                         <label for="title"
                             class="col-sm-2 col-form-label">{{ __('newspost.form_control.input.title.label') }}</label>
                         <div class="col-sm-10">
-                            <input type="text" name="title" class="form-control" id="input_newspost_title"
+                            <input value="{{ old('title') }}" type="text" name="title"
+                                class="form-control @error('title') is-invalid @enderror" id="input_newspost_title"
                                 placeholder="{{ __('newspost.form_control.input.title.placeholder') }}">
+                            @error('title')
+                                <span class="invalid-feedback" role="alert">
+                                    {{ $message }}
+                                </span>
+                            @enderror
                         </div>
                     </div>
                     {{-- slug --}}
@@ -23,8 +30,14 @@
                         <label for="slug"
                             class="col-sm-2 col-form-label">{{ __('newspost.form_control.input.slug.label') }}</label>
                         <div class="col-sm-10">
-                            <input type="text" name="slug" class="form-control" id="input_newspost_slug"
+                            <input value="{{ old('slug') }}" type="text" name="slug"
+                                class="form-control @error('slug') is-invalid @enderror" id="input_newspost_slug"
                                 placeholder="{{ __('newspost.form_control.input.slug.placeholder') }}" readonly>
+                            @error('slug')
+                                <span class="invalid-feedback" role="alert">
+                                    {{ $message }}
+                                </span>
+                            @enderror
                         </div>
                     </div>
                     {{-- thumbnail --}}
@@ -39,8 +52,14 @@
                                         {{ __('newspost.button.browse.value') }}
                                     </button>
                                 </div>
-                                <input id="input_newspost_thumbnail" name="thumbnail" type="text" class="form-control"
+                                <input value="{{ old('thumbnail') }}" id="input_newspost_thumbnail" name="thumbnail"
+                                    type="text" class="form-control @error('thumbnail') is-invalid @enderror"
                                     placeholder="{{ __('newspost.form_control.input.thumbnail.placeholder') }}" readonly />
+                                @error('thumbnail')
+                                    <span class="invalid-feedback" role="alert">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
                             </div>
                         </div>
                         <div id="holder"></div>
@@ -50,8 +69,13 @@
                         <label for="description"
                             class="col-sm-2 col-form-label">{{ __('newspost.form_control.textarea.description.label') }}</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control" style="height: 100px"
-                                placeholder="{{ __('newspost.form_control.textarea.description.placeholder') }}"></textarea>
+                            <textarea name="description" class="form-control @error('description') is-invalid @enderror" style="height: 100px"
+                                placeholder="{{ __('newspost.form_control.textarea.description.placeholder') }}">{{ old('description') }}</textarea>
+                            @error('description')
+                                <span class="invalid-feedback" role="alert">
+                                    {{ $message }}
+                                </span>
+                            @enderror
                         </div>
                     </div>
 
@@ -66,7 +90,13 @@
                         {{ __('newspost.form_control.textarea.content.label') }}
                     </label>
                     <textarea id="input_newspost_content" name="content"
-                        placeholder="{{ __('newspost.form_control.textarea.content.placeholder') }}" class="form-control" rows="20">{{ old('content') }}</textarea>
+                        placeholder="{{ __('newspost.form_control.textarea.content.placeholder') }}"
+                        class="form-control @error('content') is-invalid @enderror" rows="20">{{ old('content') }}</textarea>
+                    @error('content')
+                        <span class="invalid-feedback" role="alert">
+                            {{ $message }}
+                        </span>
+                    @enderror
                 </div>
             </div>
         </div>
@@ -77,25 +107,40 @@
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label">Select</label>
                         <div class="col-sm-10">
-                            <select id="select_category_parent" name="newspost_category[]" class="form-control"
+                            <select id="select_category_parent" name="category[]"
+                                class="form-control @error('status') is-invalid @enderror"
                                 data-placeholder="{{ __('newspost.form_control.input.category.placeholder') }}" multiple>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                                @if (old('category'))
+                                    @foreach (old('category') as $item)
+                                        <option value="{{ $item->id }}" selected>{{ $item->title }}
+                                        </option>
+                                    @endforeach
+                                @endif
                             </select>
+                            @error('category')
+                                <span class="invalid-feedback" role="alert">
+                                    {{ $message }}
+                                </span>
+                            @enderror
                         </div>
                     </div>
                     {{-- status --}}
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label">Status</label>
                         <div class="col-sm-10">
-                            <select id="select_newspost_status" class="form-select" name="status">
+                            <select id="select_newspost_status" class="form-select @error('status') is-invalid @enderror"
+                                name="status">
                                 @foreach ($statuses as $key => $value)
-                                    <option value="{{ $key }}">
+                                    <option value="{{ $key }}" {{ old('status') == $key ? 'selected' : null }}>
                                         {{ $value }}
                                     </option>
                                 @endforeach
                             </select>
+                            @error('status')
+                                <span class="invalid-feedback" role="alert">
+                                    {{ $message }}
+                                </span>
+                            @enderror
                         </div>
                     </div>
                     <div class="mb-3">
