@@ -67,7 +67,7 @@
         <li class="nav-heading">{{ __('dashboard.menu.setting') }}</li>
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="users-profile.html">
+            <a class="nav-link collapsed" href="{{route('filemanager.index')}}">
                 <i class="bi bi-files"></i>
                 <span>{{ __('dashboard.link.file_manager') }}</span>
             </a>

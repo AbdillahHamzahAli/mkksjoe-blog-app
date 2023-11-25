@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\NewsPostController;
+use App\Http\Controllers\FileManagerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,11 +32,14 @@ Route::prefix('dashboard')->middleware(['web', 'auth', 'verified'])->group(funct
     Route::get('/categories/select', [CategoryController::class, 'select'])->name('categories.select');
     Route::resource('/categories', CategoryController::class);
     Route::resource('/newspost', NewsPostController::class);
+
+    Route::group(['prefix' => 'filemanager', 'middleware' => ['web', 'auth']], function () {
+        Route::get('/index', [FileManagerController::class, 'index'])->name('filemanager.index');
+        \UniSharp\LaravelFilemanager\Lfm::routes();
+    });
 });
 
-Route::group(['prefix' => 'filemanager', 'middleware' => ['web', 'auth']], function () {
-    \UniSharp\LaravelFilemanager\Lfm::routes();
-});
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

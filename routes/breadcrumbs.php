@@ -79,8 +79,8 @@ Breadcrumbs::for('edit_categories_title', function (BreadcrumbTrail $trail,  $ca
     $trail->parent('edit_categories', $category);
     $trail->push($category->title, route('categories.edit', ['category' => $category]));
 });
-// // Home > Blog > [Category]
-// Breadcrumbs::for('category', function (BreadcrumbTrail $trail, $category) {
-//     $trail->parent('blog');
-//     $trail->push($category->title, route('category', $category));
-// });
+// Dashboard > FileManager
+Breadcrumbs::for('file_manager', function (BreadcrumbTrail $trail) {
+    $trail->parent('dashboard');
+    $trail->push('File Manager', route('filemanager.index'));
+});
