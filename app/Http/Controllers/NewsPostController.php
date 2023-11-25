@@ -18,7 +18,7 @@ class NewsPostController extends Controller
     public function index()
     {
         return view('news.index', [
-            'newsposts' => NewsPost::all()
+            'newsposts' => NewsPost::orderBy('created_at')->get()
         ]);
     }
 
@@ -167,9 +167,28 @@ class NewsPostController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(NewsPost $newsPost)
+    public function destroy(NewsPost $newspost)
     {
-        //
+        DB::beginTransaction();
+
+        try {
+            $newspost->delete();
+            $newspost->categories()->detach();
+
+            Alert::success(
+                trans('newspost.alert.delete.title'),
+                trans('newspost.alert.delete.message.success')
+            );
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            Alert::error(
+                trans('newspost.alert.delete.title'),
+                trans('newspost.alert.delete.message.error', ['error' => $th->getMessage()])
+            );
+        } finally {
+            DB::commit();
+            return redirect()->back();
+        }
     }
     private function statuses()
     {

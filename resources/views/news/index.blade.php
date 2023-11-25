@@ -45,7 +45,7 @@
                         </div>
                         <div>
                             <a href="{{ route('newspost.create') }}" class="btn btn-primary float-right" role="button">
-                                {{ trans('newspost.button.create.value') }}
+                                {{ __('newspost.button.create.value') }}
                                 <i class="bi bi-plus-square"></i>
                             </a>
                         </div>
@@ -72,9 +72,12 @@
                                             <i class="bi bi-pencil-square"></i>
                                         </a>
                                         <!-- delete -->
-                                        <form class="d-inline" role="alert"
-                                            alert-text="Are you sure you want to delete the LARAVEL 10 2023 post?"
-                                            action="" method="POST">
+                                        <form action="{{ route('newspost.destroy', ['newspost' => $newspost]) }}"
+                                            class="d-inline" role="alert"
+                                            alert-text="{{ __('newspost.alert.delete.message.confirm', ['title' => $newspost->title]) }}"
+                                            method="POST">
+                                            @csrf
+                                            @method('DELETE')
                                             <button type="submit" class="btn btn-sm btn-danger">
                                                 <i class="bi bi-trash"></i>
                                             </button>
@@ -97,4 +100,24 @@
 
 @push('javascript-internal')
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $(document).ready(function() {
+            // Delete Tag
+            $("form[role='alert']").submit(function(event) {
+                event.preventDefault();
+                Swal.fire({
+                    title: "{{ __('newspost.alert.delete.title') }}",
+                    text: $(this).attr('alert-text'),
+                    allowOutsideClick: false,
+                    showCancelButton: true,
+                    cancelButtonText: "{{ __('newspost.button.cancel.value') }}",
+                    reverseButtons: true,
+                    confirmButtonText: "{{ __('newspost.button.delete.value') }}",
+                }).then((result) => {
+                    if (result.dismiss == 'cancel') return;
+                    event.target.submit();
+                });
+            })
+        })
+    </script>
 @endpush
