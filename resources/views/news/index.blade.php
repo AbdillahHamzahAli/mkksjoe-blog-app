@@ -18,10 +18,12 @@
                                         </label>
                                         <div class="col-sm-5">
                                             <select name="status" class="form-select">
-                                                <option value="draft">Draft
-                                                </option>
-                                                <option value="publish" selected="">Publish
-                                                </option>
+                                                @foreach ($statuses as $value => $label)
+                                                    <option value="{{ $value }}"
+                                                        {{ $statusSelected == $value ? 'selected' : null }}>
+                                                        {{ $label }}
+                                                    </option>
+                                                @endforeach
                                             </select>
                                         </div>
 
@@ -32,7 +34,8 @@
                                         </div>
                                     </div>
                                     <div class="input-group mx-1">
-                                        <input name="keyword" value="" type="search" class="form-control"
+                                        <input name="keyword" value="{{ request()->get('keyword') }}" type="search"
+                                            class="form-control"
                                             placeholder="{{ __('newspost.form_control.input.search.placeholder') }}">
                                         <div class="input-group-append">
                                             <button class="btn btn-primary" type="submit">
@@ -86,13 +89,24 @@
                                 </div>
                             </div>
                         @empty
-                            <p class="my-2">
-                                {{ __('newspost.label.no_data.fetch') }}
-                            </p>
+                            @if (request()->get('keyword'))
+                                <p class="my-2">
+                                    {{ __('newspost.label.no_data.search', ['keyword' => request()->get('keyword')]) }}
+                                </p>
+                            @else
+                                <p class="my-2">
+                                    {{ __('newspost.label.no_data.fetch') }}
+                                </p>
+                            @endif
                         @endforelse
                         <!-- list post -->
                     </ul>
                 </div>
+                @if ($newsposts->hasPages())
+                    <div class="card-footer">
+                        {{ $newsposts->links('vendor.pagination.bootstrap-5') }}
+                    </div>
+                @endif
             </div>
         </div>
     </div>

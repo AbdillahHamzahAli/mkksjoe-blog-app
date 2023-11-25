@@ -15,10 +15,17 @@ class NewsPostController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        $statusSelected = in_array($request->get('status'), ['publish', 'draft']) ? $request->get('status') : 'publish';
+        $newsposts = $statusSelected === 'publish' ? NewsPost::publish() : NewsPost::draft();
+        if ($request->get('keyword')) {
+            $newsposts->search($request->get('keyword'));
+        }
         return view('news.index', [
-            'newsposts' => NewsPost::orderBy('created_at')->get()
+            'newsposts' => $newsposts->paginate(8)->withQueryString(),
+            'statuses' => $this->statuses(),
+            'statusSelected' => $statusSelected
         ]);
     }
 

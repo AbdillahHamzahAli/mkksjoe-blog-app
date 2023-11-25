@@ -17,10 +17,6 @@ class NewsPost extends Model
         'status',
         'user_id'
     ];
-    // public function tag()
-    // {
-    //     return  $this->belongsToMany(Tag::class)->withTimestamps();
-    // }
     public function categories()
     {
         return  $this->belongsToMany(Category::class)->withTimestamps();
