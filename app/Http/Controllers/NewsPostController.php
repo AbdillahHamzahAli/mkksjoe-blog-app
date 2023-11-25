@@ -90,9 +90,12 @@ class NewsPostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(NewsPost $newsPost)
+    public function show(NewsPost $newspost)
     {
-        //
+        return view('news.show', [
+            'newspost' => $newspost,
+            'categories' => $newspost->categories,
+        ]);
     }
 
     /**

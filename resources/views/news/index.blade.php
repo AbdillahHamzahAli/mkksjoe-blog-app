@@ -62,7 +62,8 @@
                                     </p>
                                     <div class="d-flex justify-content-end">
                                         <!-- detail -->
-                                        <a href="" class="btn btn-sm btn-primary" role="button">
+                                        <a href="{{ route('newspost.show', ['newspost' => $newspost]) }}"
+                                            class="btn btn-sm btn-primary" role="button">
                                             <i class="bi bi-eye"></i>
                                         </a>
                                         <!-- edit -->

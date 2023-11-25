@@ -22,10 +22,20 @@ Breadcrumbs::for('news', function (BreadcrumbTrail $trail) {
     $trail->parent('dashboard');
     $trail->push('News', route('newspost.index'));
 });
-// Dashboard > News
+// Dashboard > News > Add
 Breadcrumbs::for('add_news', function (BreadcrumbTrail $trail) {
     $trail->parent('news');
     $trail->push('Add', route('newspost.create'));
+});
+// Dashboard > News > [Title]
+Breadcrumbs::for('detail_news', function (BreadcrumbTrail $trail, $newspost) {
+    $trail->parent('news');
+    $trail->push('Detail', route('newspost.show', ['newspost' => $newspost]));
+});
+// Dashboard > News > [Title]
+Breadcrumbs::for('detail_news_title', function (BreadcrumbTrail $trail, $newspost) {
+    $trail->parent('detail_news', $newspost);
+    $trail->push($newspost->title, route('newspost.show', ['newspost' => $newspost]));
 });
 // Dashboard > Categories
 Breadcrumbs::for('categories', function (BreadcrumbTrail $trail) {
