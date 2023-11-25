@@ -67,7 +67,8 @@
                                             <i class="bi bi-eye"></i>
                                         </a>
                                         <!-- edit -->
-                                        <a href="" class="btn btn-sm btn-info mx-1" role="button">
+                                        <a href="{{ route('newspost.edit', ['newspost' => $newspost]) }}"
+                                            class="btn btn-sm btn-info mx-1" role="button">
                                             <i class="bi bi-pencil-square"></i>
                                         </a>
                                         <!-- delete -->

@@ -37,6 +37,18 @@ Breadcrumbs::for('detail_news_title', function (BreadcrumbTrail $trail, $newspos
     $trail->parent('detail_news', $newspost);
     $trail->push($newspost->title, route('newspost.show', ['newspost' => $newspost]));
 });
+
+// Dashboard > News > Edit
+Breadcrumbs::for('edit_news', function (BreadcrumbTrail $trail, $newspost) {
+    $trail->parent('news');
+    $trail->push('Edit', route('newspost.edit', ['newspost' => $newspost]));
+});
+// Dashboard > News > Edit > [Title]
+Breadcrumbs::for('edit_news_title', function (BreadcrumbTrail $trail, $newspost) {
+    $trail->parent('edit_news', $newspost);
+    $trail->push($newspost->title, route('newspost.edit', ['newspost' => $newspost]));
+});
+
 // Dashboard > Categories
 Breadcrumbs::for('categories', function (BreadcrumbTrail $trail) {
     $trail->parent('dashboard');

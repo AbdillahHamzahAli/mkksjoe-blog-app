@@ -101,17 +101,67 @@ class NewsPostController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(NewsPost $newsPost)
+    public function edit(NewsPost $newspost)
     {
-        //
+        return view('news.edit', [
+            'newspost' => $newspost,
+            'statuses' => $this->statuses()
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, NewsPost $newsPost)
+    public function update(Request $request, NewsPost $newspost)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|string|max:60',
+            'slug' => 'required|string|unique:news_posts,slug,' . $newspost->id,
+            'thumbnail' => 'required',
+            'description' => 'required|string|max:240',
+            'content' => 'required',
+            'category' => 'required',
+            'status' => 'required'
+        ], [], $this->attributes());
+
+        if ($validator->fails()) {
+            if ($request['category']) {
+                $request['category'] = Category::select('id', 'title')->whereIn('id', $request->category)->get();
+            }
+            return redirect()->back()->withInput($request->all())->withErrors($validator);
+        }
+        // dd($request->all());
+        DB::beginTransaction();
+
+        try {
+            $newspost->update([
+                'title' => $request->title,
+                'slug' => $request->slug,
+                'thumbnail' => parse_url($request->thumbnail)['path'],
+                'description' => $request->description,
+                'content' => $request->content,
+                'status' => $request->status,
+                'user_id' => Auth::user()->id
+            ]);
+            // $post->tag()->attach($request->tag);
+            $newspost->categories()->sync($request->category);
+
+            Alert::success(
+                trans('newspost.alert.update.title'),
+                trans('newspost.alert.update.message.success')
+            );
+
+            return redirect()->route('newspost.index');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            Alert::error(
+                trans('newspost.alert.update.title'),
+                trans('newspost.alert.update.message.error', ['error' => $th->getMessage()])
+            );
+            return redirect()->back()->withInput($request->all());
+        } finally {
+            DB::commit();
+        }
     }
 
     /**
