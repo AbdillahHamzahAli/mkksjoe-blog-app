@@ -20,13 +20,13 @@
                     <!-- thumbnail:start -->
                     @if (file_exists(public_path($post->thumbnail)))
                         <img src="{{ asset($post->thumbnail) }}" alt="{{ $post->title }}"
-                            class="object-cover w-[278px] md:w-52 h-28 md:h-40">
+                            class="object-cover w-full md:w-52 h-28 md:h-40">
                     @else
                         <img src="http://placehold.it/700x400" alt="{{ $post->title }}"
-                            class="object-cover w-[278px] md:w-52 md:h-40 h-28">
+                            class="object-cover w-full md:w-52 md:h-40 h-28">
                     @endif
                     <!-- thumbnail:end -->
-                    <h4 class="bg-primary absolute top-0 left-0 p-1 text-white font-bold "> BLOG </h4>
+                    <h4 class="bg-mygreen absolute top-0 left-0 p-1 text-white font-bold "> BLOG </h4>
                 </div>
                 <div class="grow-0 shrink basis-full md:basis-3/4 md:pl-4 pt-4 grid content-between">
                     <div class="mb-4">
@@ -36,7 +36,7 @@
                         </p>
                     </div>
 
-                    <a class="text-xs font-bold hover:text-primary group" href="">Read More <i
+                    <a class="text-xs font-bold hover:text-mygreen group" href="">Read More <i
                             class="fa-solid fa-arrow-right group-hover:translate-x-2 duration-300"></i> </a>
                 </div>
             </article>

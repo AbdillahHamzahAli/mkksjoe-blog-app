@@ -1,6 +1,6 @@
-<div class="bg-slate-100 pt-4 w-full">
+<div class="bg-mygray py-4 w-full">
     <div class="container">
-        <div class="  bg-white shadow-md">
+        <div class="bg-white shadow-md">
             <div class="p-2 h-full flex items-center">
                 <div class="py-6 bg-[#1b8415] px-4 text-center">
                     <i class="fa-solid fa-bolt text-white hidden md:inline"></i>

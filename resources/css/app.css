@@ -6,7 +6,7 @@
     font-family: "Roboto", sans-serif;
 }
 nav[aria-label="breadcrumb"] {
-    @apply bg-slate-100  py-4;
+    @apply bg-mygray py-2;
 }
 nav .breadcrumb {
     @apply flex flex-row bg-white p-4 shadow-md;

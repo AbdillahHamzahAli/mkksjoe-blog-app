@@ -3,7 +3,7 @@
         src="https://mkks-smasjo.my.id/wp-content/uploads/2023/08/cropped-Blue-and-White-Simple-Business-Email-Header.png"
         alt="image">
     <header>
-        <div class="w-full bg-[#1b8415]">
+        <div class="w-full bg-mygreen">
             <div class="container">
                 <div class="flex py-1 justify-center md:justify-between items-center">
                     <div class=" hidden p-2 md:flex text-white font-medium text-sm ">
@@ -32,8 +32,12 @@
                         </span>
                     </div>
                     <div class="grow-0 shrink basis-1/4  justify-end p-2 md:flex  font-medium text-gray-700">
-                        <span><i class="fa-regular fa-envelope"></i> News Letter</span>
-                        <span class="ml-2"> <i class="fa-solid fa-bolt"></i> Random News</span>
+                        <a href="" class="hover:text-mygreen">
+                            <span><i class="bi bi-newspaper"></i> News Letter</span>
+                        </a>
+                        <a href="" class="hover:text-mygreen">
+                            <span class="ml-2"> <i class="bi bi-lightning-fill"></i> Random News</span>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -45,12 +49,12 @@
                 <div class="grow-0 shrink basis-1/4 cursor-pointer" onclick="navbarToogle()">
                     <i id="open" class="bi bi-list  text-2xl md:hidden"></i>
                     <i id="close" class="hidden bi bi-x-lg text-2xl md:hidden"></i>
-                    <span class="text-[#1b8415] ">MENU</span>
+                    <span class="text-mygreen ">MENU</span>
                 </div>
                 <div class="grow-0 shrink basis-1/2 text-sm">
-                    <ul class="hidden  bg-white justify-center px-2 md:flex relative">
+                    <ul class="hidden bg-white justify-center px-2 md:flex relative cursor-pointer">
                         <li class="group flex flex-col">
-                            <p class="flex md:inline-flex py-2 px-4 items-center hover:text-[#1b8415] font-bold">
+                            <p class="flex md:inline-flex py-2 px-4 items-center hover:text-mygreen font-bold">
                                 <span>{{ trans('blog.menu.profile') }}
                                 </span>
                                 <svg xmlns="http://www.w3.org/2000/svg" class="ml-2 w-4 h-4" height="1em"
@@ -63,23 +67,23 @@
                                 class="z-10 group-hover:inline-block hidden child transition duration-300 md:absolute top-full px-2 bg-white md:shadow-lg md:rounded-b">
                                 <li class="border-b-2 border-gray-400">
                                     <a href=""
-                                        class="flex md:inline-flex p-3 items-center hover:text-[#1b8415]  font-bold">STRUKTUR
+                                        class="flex md:inline-flex p-3 items-center hover:text-mygreen  font-bold">STRUKTUR
                                         PENGURUS</a>
                                 </li>
                                 <li class="border-b-2 border-gray-400">
                                     <a href=""
-                                        class="flex md:inline-flex p-3 items-center hover:text-[#1b8415]  font-bold">TUGAS
+                                        class="flex md:inline-flex p-3 items-center hover:text-mygreen  font-bold">TUGAS
                                         POKOK & FUNGSI</a>
                                 </li>
                                 <li>
                                     <a href=""
-                                        class="flex md:inline-flex p-3 items-center hover:text-[#1b8415]  font-bold">DATA
+                                        class="flex md:inline-flex p-3 items-center hover:text-mygreen  font-bold">DATA
                                         ANGGOTA</a>
                                 </li>
                             </ul>
                         </li>
                         <li class="group flex flex-col">
-                            <p class="flex md:inline-flex py-2 px-4 items-center hover:text-[#1b8415]  font-bold">
+                            <p class="flex md:inline-flex py-2 px-4 items-center hover:text-mygreen  font-bold">
                                 <span>INFORMASI
                                 </span>
                                 <svg xmlns="http://www.w3.org/2000/svg" class="ml-2 w-4 h-4" height="1em"
@@ -93,20 +97,20 @@
                                 class="z-10 group-hover:inline-block hidden child transition duration-300 md:absolute top-full px-2 bg-white md:shadow-lg md:rounded-b">
                                 <li class="border-b-2 border-gray-400">
                                     <a href="/"
-                                        class="flex md:inline-flex p-3 items-center hover:text-[#1b8415]  font-bold">BERITA</a>
+                                        class="flex md:inline-flex p-3 items-center hover:text-mygreen  font-bold">BERITA</a>
                                 </li>
                                 <li class="border-b-2 border-gray-400">
                                     <a href=""
-                                        class="flex md:inline-flex p-3 items-center hover:text-[#1b8415]  font-bold">PENGUMUMAN</a>
+                                        class="flex md:inline-flex p-3 items-center hover:text-mygreen  font-bold">PENGUMUMAN</a>
                                 </li>
                                 <li>
                                     <a href=""
-                                        class="flex md:inline-flex p-3 items-center hover:text-[#1b8415]  font-bold">AGENDA</a>
+                                        class="flex md:inline-flex p-3 items-center hover:text-mygreen  font-bold">AGENDA</a>
                                 </li>
                             </ul>
                         </li>
                         <li class="group flex flex-col">
-                            <p class="flex md:inline-flex py-2 px-4 items-center hover:text-[#1b8415]  font-bold">
+                            <p class="flex md:inline-flex py-2 px-4 items-center hover:text-mygreen  font-bold">
                                 <span>GALERI
                                 </span>
                                 <svg xmlns="http://www.w3.org/2000/svg" class="ml-2 w-4 h-4" height="1em"
@@ -120,29 +124,29 @@
                                 class="z-10 group-hover:inline-block hidden child transition duration-300 md:absolute top-full px-2 bg-white md:shadow-lg md:rounded-b">
                                 <li class="border-b-2 border-gray-400">
                                     <a href=""
-                                        class="flex md:inline-flex p-3 items-center hover:text-[#1b8415]  font-bold">FOTO</a>
+                                        class="flex md:inline-flex p-3 items-center hover:text-mygreen  font-bold">FOTO</a>
                                 </li>
                                 <li>
                                     <a href=""
-                                        class="flex md:inline-flex p-3 items-center hover:text-[#1b8415]  font-bold">VIDEO</a>
+                                        class="flex md:inline-flex p-3 items-center hover:text-mygreen  font-bold">VIDEO</a>
                                 </li>
                             </ul>
                         </li>
                         <li>
                             <a href=""
-                                class="flex md:inline-flex py-2 px-4 items-center hover:text-[#1b8415]  font-bold">DOWNLOAD</a>
+                                class="flex md:inline-flex py-2 px-4 items-center hover:text-mygreen  font-bold">DOWNLOAD</a>
                         </li>
                     </ul>
                 </div>
                 <div class="grow-0 shrink basis-1/4 flex justify-end relative">
-                    <i id="search-icon" onclick="searchToggle()" class="fas fa-search text-2xl cursor-pointer"></i>
+                    <i id="search-icon" onclick="searchToggle()" class="bi bi-search text-2xl cursor-pointer"></i>
                     <div id="search-form"
-                        class="hidden absolute top-10 right-0 bg-white px-2 py-3 z-50 border-t-4 border-[#1b8415] ">
+                        class="hidden absolute top-10 right-0 bg-white px-2 py-3 z-50 border-t-4 border-mygreen ">
                         <form action="" method="GET" class=" flex items-center justify-between gap-4">
-                            <input class="p-2 bg-white border-2 rounded-sm focus:outline-none " name="keyword"
+                            <input class="p-2 bg-white border-2 rounded-s-sm focus:outline-none " name="keyword"
                                 value="{{ request()->get('keyword') }}" type="search" id="search"
                                 placeholder="Search ...">
-                            <button type="submit" class="rounded p-2 bg-primary">SEARCH</button>
+                            <button type="submit" class="rounded text-white p-2 bg-mygreen">SEARCH</button>
                         </form>
                     </div>
                 </div>
@@ -150,7 +154,7 @@
             <div class="navbar z-10 flex hidden md:hidden">
                 <ul class="bg-white w-full justify-center px-2 md:flex relative ">
                     <li class="group flex flex-col">
-                        <p class="flex md:inline-flex p-4 items-center hover:text-[#1b8415] font-bold">
+                        <p class="flex md:inline-flex p-4 items-center hover:text-mygreen font-bold">
                             <span>{{ __('blog.menu.profile') }}
                             </span>
                             <svg xmlns="http://www.w3.org/2000/svg" class="ml-2 w-4 h-4" height="1em"

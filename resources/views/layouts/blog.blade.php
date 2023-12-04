@@ -21,7 +21,7 @@
 <body class="min-h-screen flex flex-col">
     @include('layouts._blog.navbar')
     <x-newsticker />
-    <div class="bg-slate-100 ">
+    <div class="bg-mygray ">
         <div class="container">
             @yield('breadcrumbs')
             @yield('newsmatic')
@@ -29,11 +29,11 @@
     </div>
 
 
-    <section class="w-full bg-slate-100 pb-4">
+    <section class="w-full bg-mygray pb-4">
         <div class="container">
             <div class="flex flex-col md:flex-row px-0 w-full">
                 <div
-                    class=" grow-0 mb-4 shrink basis-full md:basis-2/3 bg-white min-h-screen border-t-2 border-primary shadow-md">
+                    class=" grow-0 mb-4 shrink basis-full md:basis-2/3 bg-white min-h-screen border-t-2 border-mygreen shadow-md">
                     @yield('content')
                 </div>
                 <div class="grow-0 shrink basis-full md:basis-1/3 md:ml-4">
