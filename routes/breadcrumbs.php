@@ -19,6 +19,12 @@ Breadcrumbs::for('blog_home', function (BreadcrumbTrail $trail) {
     $trail->parent('blog');
     $trail->push('Home', '#');
 });
+// Blog > Post > [title]
+Breadcrumbs::for('blog_detail', function (BreadcrumbTrail $trail, $title) {
+    $trail->parent('blog');
+    $trail->push('Home', route('blog.home'));
+    $trail->push($title, '#');
+});
 
 //==================DASHBOARD=================//
 

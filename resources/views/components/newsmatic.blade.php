@@ -1,19 +1,20 @@
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-    <a href="" class="group shadow-sm">
-        <div class="relative w-full h-full flex min-h-96 ">
-            <img class=" w-full object-cover
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
+    <a href="{{ route('blog.post.detail', ['slug' => $posts[0]->slug]) }}" class="group shadow-sm">
+        <div class="relative w-full h-full flex  ">
+            <img class="md:min-h-[430px] min-h-[370px] w-full object-cover
              brightness-50 group-hover:brightness-100 group-hover:saturate-150 transition duration-300"
                 src="{{ $posts[0]->thumbnail }}" alt="{{ $posts[0]->title }}">
             <div class="p-4 absolute text-white bottom-0 left-0 ">
                 <h1 class="font-bold text-base md:text-3xl ">{{ $posts[0]->title }}</h1>
-                <p class="text-sm md:text-base">{{ Str::limit($posts[0]->description, 180, '...') }}</p>
+                <p class="hidden md:inline  text-sm md:text-base">{{ Str::limit($posts[0]->description, 180, '...') }}
+                </p>
             </div>
         </div>
     </a>
-    <div class="md:grid grid-cols-2 grid-rows-2 w-full gap-4 hidden">
+    <div class="lg:grid grid-cols-2 grid-rows-2 w-full gap-4 hidden">
         @foreach ($posts as $key => $post)
             @if ($key >= 1)
-                <a href="" class="group ">
+                <a href="{{ route('blog.post.detail', ['slug' => $post->slug]) }}" class="group ">
                     <div class="relative flex shadow-sm h-full">
                         {{-- Thumbnail --}}
                         @if (file_exists(public_path($post->thumbnail)))

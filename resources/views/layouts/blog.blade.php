@@ -31,15 +31,14 @@
 
     <section class="w-full bg-mygray pb-4">
         <div class="container">
-            <div class="flex flex-col md:flex-row px-0 w-full">
+            <div class="flex flex-col lg:flex-row px-0 w-full">
                 <div
-                    class=" grow-0 mb-4 shrink basis-full md:basis-2/3 bg-white min-h-screen border-t-2 border-mygreen shadow-md">
+                    class=" grow-0 mb-4 shrink basis-full lg:basis-2/3 bg-white min-h-screen border-t-2 border-mygreen shadow-md">
                     @yield('content')
                 </div>
-                <div class="grow-0 shrink basis-full md:basis-1/3 md:ml-4">
+                <div class="grow-0 shrink basis-full lg:basis-1/3 lg:ml-4">
                     <ul class="flex flex-col w-full">
                         @yield('right-side')
-                        <x-side-category />
                     </ul>
                 </div>
             </div>

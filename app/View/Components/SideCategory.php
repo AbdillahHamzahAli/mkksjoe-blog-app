@@ -13,9 +13,11 @@ class SideCategory extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public $category;
+
+    public function __construct($category = null)
     {
-        //
+        $this->category = $category ?? $this->getCategory();
     }
 
     /**
@@ -23,8 +25,10 @@ class SideCategory extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.side-category', [
-            'categories' => Category::with('descendants')->onlyParent()->limit(5)->get()
-        ]);
+        return view('components.side-category');
+    }
+    public function getCategory()
+    {
+        return Category::with('descendants')->onlyParent()->limit(7)->get();
     }
 }

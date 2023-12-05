@@ -25,6 +25,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/', [BlogController::class, 'home'])->name('blog.home');
+Route::get('/post/{slug}', [BlogController::class, 'showPostDetail'])->name('blog.post.detail');
 
 
 Route::get('/localization/{language}', LocalizationController::class)->name('localization.switch');
