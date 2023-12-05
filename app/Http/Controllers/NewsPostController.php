@@ -23,7 +23,7 @@ class NewsPostController extends Controller
             $newsposts->search($request->get('keyword'));
         }
         return view('news.index', [
-            'newsposts' => $newsposts->paginate(8)->withQueryString(),
+            'newsposts' => $newsposts->latest()->paginate(8)->withQueryString(),
             'statuses' => $this->statuses(),
             'statusSelected' => $statusSelected
         ]);
